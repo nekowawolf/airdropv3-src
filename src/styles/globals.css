@@ -39,7 +39,7 @@ body {
 }
 
 .darkmode {
-  --body-color: #93c5fd;
+  --body-color: #f3f4f6;
   --fill-color: #111827;
   --card-color: #ffffff;
   --border-color: #959090;
@@ -88,5 +88,11 @@ body {
   background-color: #1f2937;
 }
 .darkmode .navbar-color {
-  background-color: #e5e7eb;
+  background-color: #fbfcfe;
+}
+
+.glass-card {
+  background-color: var(--card-color2);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
 }

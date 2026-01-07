@@ -23,17 +23,26 @@ export default function Header() {
   return (
     <header className="w-full border-b border-color navbar-color">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-end sm:justify-between h-16">
           <nav className="hidden sm:flex items-center gap-6">
-            <Link href="#" className="text-fill-color text-lg font-semibold hover:opacity-80">
+            <Link href="#" className="text-fill-color/60 text-lg font-semibold hover:opacity-80">
               Airdrops
             </Link>
-            <Link href="#" className="text-fill-color text-lg font-semibold hover:opacity-80">
+            <Link href="#" className="text-fill-color/60 text-lg font-semibold hover:opacity-80">
               Community
             </Link>
           </nav>
 
           <div className="flex items-center gap-3">
+            <button
+              id="theme-switch"
+              aria-label="Toggle dark mode"
+              onClick={onToggle}
+              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl"
+            >
+              <FaSun id="moon-icon" className={`${isDarkMode ? 'hidden' : ''}`} />
+              <FaMoon id="sun-icon" className={`${isDarkMode ? '' : 'hidden'}`} />
+            </button>
             <button
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
@@ -43,34 +52,24 @@ export default function Header() {
               <FaBars />
             </button>
 
-            <button
-              id="theme-switch"
-              aria-label="Toggle dark mode"
-              onClick={onToggle}
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl"
-            >
-              <FaMoon id="moon-icon" className={`${isDarkMode ? 'hidden' : ''}`} />
-              <FaSun id="sun-icon" className={`${isDarkMode ? '' : 'hidden'}`} />
-            </button>
-
             <Link
               href="#"
               aria-label="GitHub"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
             >
               <FaGithub />
             </Link>
             <Link
               href="#"
               aria-label="LinkedIn"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
             >
               <FaLinkedin />
             </Link>
             <Link
               href="#"
               aria-label="X"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
             >
               <FaXTwitter />
             </Link>
@@ -94,6 +93,32 @@ export default function Header() {
             >
               Community
             </Link>
+            <div className="flex items-center gap-3 pt-2">
+              <Link
+                href="#"
+                aria-label="GitHub"
+                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaGithub />
+              </Link>
+              <Link
+                href="#"
+                aria-label="LinkedIn"
+                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaLinkedin />
+              </Link>
+              <Link
+                href="#"
+                aria-label="X"
+                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaXTwitter />
+              </Link>
+            </div>
           </div>
         </div>
       )}
