@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <main className="max-w-4xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
+    <main className="max-w-4xl mx-auto px-6 sm:px-8 pt-24 sm:pt-32 pb-12 sm:pb-16">
       <section className="text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6 mx-auto">
           <span className="relative flex h-2 w-2">

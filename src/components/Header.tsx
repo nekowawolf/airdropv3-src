@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaXTwitter, FaSun, FaMoon } from 'react-icons/fa6';
+import { HiOutlineX } from "react-icons/hi";
 import { FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
 import { toggleDarkMode } from '@/utils/darkmode';
 
@@ -44,12 +45,12 @@ export default function Header() {
               <FaMoon id="sun-icon" className={`${isDarkMode ? '' : 'hidden'}`} />
             </button>
             <button
-              aria-label="Open menu"
+              aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
               onClick={() => setIsMenuOpen((v) => !v)}
               className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl sm:hidden"
             >
-              <FaBars />
+              {isMenuOpen ? <HiOutlineX size={25} /> : <FaBars />}
             </button>
 
             <Link
