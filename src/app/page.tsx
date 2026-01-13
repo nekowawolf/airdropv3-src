@@ -13,7 +13,7 @@ export default function HomePage() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
-          <span className="text-sm font-medium text-fill-color">67+ Live Airdrops</span>
+          <span className="text-[9px] sm:text-sm font-medium text-fill-color">67+ Live Airdrops</span>
         </div>
         <h1 className="text-transparent bg-clip-text bg-blue-400 text-4xl sm:text-6xl font-bold mb-3 sm:mb-4">
           Nww Airdrop
