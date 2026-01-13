@@ -23,8 +23,8 @@ export default function HeroSection() {
         </div>
 
         {/* TITLE */}
-        <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-5xl sm:text-6xl font-extrabold mb-4">
-          NWW Airdrop
+        <h1 className="text-blue-400 sm:text-6xl text-5xl font-extrabold mb-4">
+          Nww Airdrop
         </h1>
 
         {/* DESC */}
