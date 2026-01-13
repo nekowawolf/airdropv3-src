@@ -57,7 +57,7 @@ export default function Header() {
       >
         <div
           className={`
-            max-w-7xl mx-auto
+            max-w-4xl mx-auto
             h-14 sm:h-16
             rounded-full overflow-hidden
             border border-color navbar-color backdrop-blur-md
