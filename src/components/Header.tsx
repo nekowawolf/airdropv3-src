@@ -3,119 +3,165 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaXTwitter, FaSun, FaMoon } from 'react-icons/fa6';
-import { HiOutlineX } from "react-icons/hi";
+import { HiOutlineX } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
 import { toggleDarkMode } from '@/utils/darkmode';
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const current = typeof window !== 'undefined' && localStorage.getItem('darkmode') === 'active';
+    const current =
+      typeof window !== 'undefined' &&
+      localStorage.getItem('darkmode') === 'active';
     setIsDarkMode(current);
   }, []);
 
-  const onToggle = () => {
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 10);
+
+      if (y > lastScrollY && y > 80) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      lastScrollY = y;
+    };
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const onToggleTheme = () => {
     toggleDarkMode();
-    setIsDarkMode((prev) => !prev);
+    setIsDarkMode((v) => !v);
   };
 
   return (
-    <header className="w-full border-b border-color navbar-color">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="flex items-center justify-end sm:justify-between h-16">
-          <nav className="hidden sm:flex items-center gap-6">
-            <Link href="#" className="text-fill-color/60 text-lg font-semibold hover:opacity-80">
-              Airdrops
-            </Link>
-            <Link href="#" className="text-fill-color/60 text-lg font-semibold hover:opacity-80">
-              Community
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <button
-              id="theme-switch"
-              aria-label="Toggle dark mode"
-              onClick={onToggle}
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl"
-            >
-              <FaSun id="moon-icon" className={`${isDarkMode ? 'hidden' : ''}`} />
-              <FaMoon id="sun-icon" className={`${isDarkMode ? '' : 'hidden'}`} />
-            </button>
-            <button
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-              onClick={() => setIsMenuOpen((v) => !v)}
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl sm:hidden"
-            >
-              {isMenuOpen ? <HiOutlineX size={25} /> : <FaBars />}
-            </button>
-
-            <Link
-              href="#"
-              aria-label="GitHub"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
-            >
-              <FaGithub />
-            </Link>
-            <Link
-              href="#"
-              aria-label="LinkedIn"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
-            >
-              <FaLinkedin />
-            </Link>
-            <Link
-              href="#"
-              aria-label="X"
-              className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80 hidden sm:flex"
-            >
-              <FaXTwitter />
-            </Link>
-          </div>
-        </div>
-      </div>
-      {isMenuOpen && (
-        <div className="sm:hidden border-t border-color navbar-color">
-          <div className="max-w-7xl mx-auto px-6 sm:px-8 py-3 flex flex-col gap-3">
-            <Link
-              href="#"
-              className="text-fill-color text-base font-semibold hover:opacity-80"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Airdrops
-            </Link>
-            <Link
-              href="#"
-              className="text-fill-color text-base font-semibold hover:opacity-80"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Community
-            </Link>
-            <div className="flex items-center gap-3 pt-2">
+    <>
+      {/* HEADER */}
+      <header
+        className={`
+          fixed top-4 left-0 right-0 z-50 px-3 sm:px-6
+          transition-all duration-300
+          ${hidden ? '-translate-y-24 opacity-0' : 'translate-y-0 opacity-100'}
+        `}
+      >
+        <div
+          className={`
+            max-w-7xl mx-auto
+            h-14 sm:h-16
+            rounded-full overflow-hidden
+            border border-color navbar-color backdrop-blur-md
+            transition-all duration-300
+            ${scrolled ? 'shadow-lg' : 'shadow-none'}
+          `}
+        >
+          <div className="h-full px-6 sm:px-8 flex items-center">
+            {/* LEFT NAV */}
+            <nav className="hidden sm:flex items-center gap-6">
               <Link
                 href="#"
-                aria-label="GitHub"
-                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-fill-color/70 font-semibold hover:opacity-80"
+              >
+                Airdrops
+              </Link>
+              <Link
+                href="#"
+                className="text-fill-color/70 font-semibold hover:opacity-80"
+              >
+                Community
+              </Link>
+            </nav>
+
+            {/* RIGHT SIDE */}
+            <div className="flex items-center gap-3 ml-auto">
+              {/* SOCIAL */}
+              <Link
+                href="#"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
               >
                 <FaGithub />
               </Link>
               <Link
                 href="#"
-                aria-label="LinkedIn"
-                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
-                onClick={() => setIsMenuOpen(false)}
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
               >
                 <FaLinkedin />
               </Link>
               <Link
                 href="#"
-                aria-label="X"
-                className="card-color w-10 h-10 rounded-md border border-color flex justify-center items-center text-fill-color text-xl hover:opacity-80"
-                onClick={() => setIsMenuOpen(false)}
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
+              >
+                <FaXTwitter />
+              </Link>
+
+              {/* DARK MODE */}
+              <button
+                aria-label="Toggle dark mode"
+                onClick={onToggleTheme}
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center text-lg"
+              >
+                <FaSun className={!isDarkMode ? '' : 'hidden'} />
+                <FaMoon className={isDarkMode ? '' : 'hidden'} />
+              </button>
+
+              {/* BURGER MENU */}
+              <button
+                aria-label="Toggle menu"
+                onClick={() => setIsMenuOpen((v) => !v)}
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center text-lg sm:hidden"
+              >
+                {isMenuOpen ? <HiOutlineX size={22} /> : <FaBars />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE DROPDOWN */}
+      {isMenuOpen && (
+        <div className="fixed top-[5.5rem] left-0 right-0 z-40 px-3 sm:hidden">
+          <div className="max-w-7xl mx-auto rounded-xl border border-color navbar-color shadow-lg p-4 space-y-4">
+            <Link
+              href="#"
+              onClick={() => setIsMenuOpen(false)}
+              className="block font-semibold text-fill-color/70"
+            >
+              Airdrops
+            </Link>
+            <Link
+              href="#"
+              onClick={() => setIsMenuOpen(false)}
+              className="block font-semibold text-fill-color/70"
+            >
+              Community
+            </Link>
+
+            <div className="flex gap-3 pt-2">
+              <Link
+                href="#"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
+              >
+                <FaGithub />
+              </Link>
+              <Link
+                href="#"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
+              >
+                <FaLinkedin />
+              </Link>
+              <Link
+                href="#"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
               >
                 <FaXTwitter />
               </Link>
@@ -123,6 +169,6 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
