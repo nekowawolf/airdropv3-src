@@ -32,7 +32,7 @@ export default function HomePage() {
             <Button
               as={Link}
               href="/airdrops"
-              className="h-12 px-7 text-base sm:h-11 sm:px-6 sm:text-base"
+              className="h-12 px-7 text-base sm:h-11 sm:px-6 sm:text-base card-color text-fill-color"
               containerClassName="w-auto h-auto"
             >
               Explore Airdrops
