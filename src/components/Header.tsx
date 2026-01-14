@@ -160,6 +160,13 @@ export default function Header() {
             >
               Community
             </Link>
+             <Link
+              href="#"
+              onClick={() => setIsMenuOpen(false)}
+              className="block font-semibold text-fill-color/70"
+            >
+              Web3 Tools
+            </Link>
 
             <div className="flex gap-3 pt-2">
               <Link
