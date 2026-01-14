@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "motion/react";
-import { Search, TrendingUp, PieChart, CheckCircle, Bell } from "lucide-react";
+import { Search, CheckCircle, Bell } from "lucide-react";
 
 export const AirdropRadar = () => {
     return (
@@ -10,7 +10,7 @@ export const AirdropRadar = () => {
             {[1, 2, 3].map((i) => (
                 <motion.div
                     key={i}
-                    className="absolute border border-brand/20 rounded-full"
+                    className="absolute border border-blue-500 rounded-full"
                     style={{ width: i * 80, height: i * 80 }}
                     animate={{ opacity: [0.2, 0.5, 0.2] }}
                     transition={{ duration: 3, repeat: Infinity, delay: i * 0.4 }}
@@ -26,8 +26,8 @@ export const AirdropRadar = () => {
             />
 
             {/* Center Icon */}
-            <div className="relative z-10 bg-card-color2 p-3 rounded-full border border-brand/30 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                <Search className="w-6 h-6 text-brand" />
+            <div className="relative z-10 card-color p-3 rounded-full border border-brand/30 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                <Search className="w-6 h-6 text-brand text-fill-color" />
             </div>
 
             {/* Blips */}
@@ -51,13 +51,13 @@ export const FundingChart = () => {
             {[40, 70, 50, 90, 60].map((height, i) => (
                 <motion.div
                     key={i}
-                    className="w-8 bg-gradient-to-t from-brand/20 to-brand rounded-t-sm relative group"
+                    className="w-8 bg-gradient-to-t from-brand/20 to-brand rounded-t-sm relative group text-fill-color"
                     initial={{ height: 0 }}
                     animate={{ height: `${height}%` }}
                     transition={{ duration: 1, delay: i * 0.1, type: "spring" }}
                 >
                     <motion.div
-                        className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] bg-card-color border border-brand/20 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+                        className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] border border-brand/20 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
                     >
                         ${height}M
                     </motion.div>
@@ -69,7 +69,7 @@ export const FundingChart = () => {
                 <motion.path
                     d="M 10 100 L 25 60 L 45 30 L 65 50 L 85 10"
                     fill="none"
-                    stroke="rgba(255, 255, 255, 0.2)"
+                    stroke="rgba(5, 254, 142, 0.44)"
                     strokeWidth="0.5"
                     strokeDasharray="1 1"
                     initial={{ pathLength: 0 }}
@@ -112,12 +112,12 @@ export const TokenomicsPie = () => {
                 </motion.svg>
                 <div className="absolute inset-0 flex items-center justify-center flex-col">
                     <span className="text-xl font-bold text-fill-color">60%</span>
-                    <span className="text-[10px] text-muted-foreground">Community</span>
+                    <span className="text-[10px] text-muted-foreground text-fill-color">Community</span>
                 </div>
             </div>
             {/* Floating Labels */}
             <motion.div
-                className="absolute top-10 right-10 bg-card-color2/80 px-2 py-1 rounded text-xs border border-brand/20 backdrop-blur-sm"
+                className="absolute text-fill-color top-10 right-10 card-color/80 px-2 py-1 rounded text-xs border border-brand/20 backdrop-blur-sm"
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.2 }}
@@ -125,7 +125,7 @@ export const TokenomicsPie = () => {
                 Team 15%
             </motion.div>
             <motion.div
-                className="absolute bottom-10 left-10 bg-card-color2/80 px-2 py-1 rounded text-xs border border-purple-500/20 backdrop-blur-sm"
+                className="absolute text-fill-color bottom-10 left-10 card-color/80 px-2 py-1 rounded text-xs border border-purple-500/20 backdrop-blur-sm"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.5 }}
@@ -159,18 +159,18 @@ export const ClaimSuccess = () => {
             </div>
 
             <motion.div
-                className="bg-card-color2 border border-border-color px-4 py-2 rounded-lg flex items-center gap-3 shadow-lg"
+                className="card-color border border-border-color px-4 py-2 rounded-lg flex items-center gap-3 shadow-lg"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
             >
-                <Bell className="w-4 h-4 text-brand" />
+                <Bell className="w-4 h-4 text-brand text-fill-color" />
                 <div className="flex flex-col">
                     <span className="text-xs font-semibold text-fill-color">Claim Available!</span>
-                    <span className="text-[10px] text-muted-foreground">$NWW Tokens Ready</span>
+                    <span className="text-[10px] text-muted-foreground text-fill-color">$NWW Tokens Ready</span>
                 </div>
                 <motion.button
-                    className="ml-2 bg-brand text-white text-[10px] px-2 py-1 rounded"
+                    className="ml-2 bg-green-500/20 text-white text-[10px] px-2 py-1 rounded text-fill-color"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
