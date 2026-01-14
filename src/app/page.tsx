@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import Features from "@/components/Features";
 
 export const metadata = {
   title: "Nww",
@@ -7,5 +8,10 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  return <HeroSection />;
+  return (
+    <>
+      <HeroSection />
+      <Features />
+    </>
+  );
 }
