@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/moving-border";
+import HighlightText from "@/components/ui/highlight-text";
 import Header from "@/components/Header";
 
 export default function HeroSection() {
@@ -31,8 +32,13 @@ export default function HeroSection() {
             </div>
 
             {/* TITLE */}
-            <h1 className="text-blue-400 sm:text-6xl text-5xl font-extrabold mb-4">
-              Nww Airdrop
+            <h1 className="sm:text-6xl text-5xl font-extrabold mb-4">
+              <span className="text-blue-400">Nww </span>
+
+              <HighlightText
+                text="Airdrop"
+                className="text-white"
+              />
             </h1>
 
             {/* DESC */}
@@ -49,7 +55,7 @@ export default function HeroSection() {
                 className="
                   h-12 px-7 text-base sm:h-11 sm:px-6 sm:text-base
                   bg-gradient-to-r from-blue-500
-                  text-fill-color font-semibold
+                  text-white font-semibold
                   rounded-xl
                   hover:from-blue-600
                 "
