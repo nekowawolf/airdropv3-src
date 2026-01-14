@@ -51,7 +51,6 @@ export default function Header() {
       <header
         className={`
           fixed top-4 left-0 right-0 z-50 px-3 sm:px-6
-          transition-all duration-300
           ${hidden ? '-translate-y-24 opacity-0' : 'translate-y-0 opacity-100'}
         `}
       >
@@ -61,12 +60,23 @@ export default function Header() {
             h-14 sm:h-16
             rounded-full overflow-hidden
             border border-color navbar-color backdrop-blur-md
-            transition-all duration-300
             ${scrolled ? 'shadow-lg' : 'shadow-none'}
           `}
         >
-          <div className="h-full px-6 sm:px-8 flex items-center">
-            {/* LEFT NAV */}
+          <div className="h-full px-6 sm:px-8 flex items-center justify-between">
+            {/* LEFT */}
+          <Link href="/" className="flex items-center gap-2">
+            <img
+              src="https://nekowawolf.github.io/cdn-images/images/2026/1768368937_logo.jpg"
+              alt="Logo"
+              className="h-8 sm:h-10 w-auto rounded-[5px]"
+            />
+            <span className="font-extrabold text-xl sm:text-2xl text-fill-color">
+              Nww
+            </span>
+          </Link>
+
+            {/* NAVIGATION */}
             <nav className="hidden sm:flex items-center gap-6">
               <Link
                 href="#"
@@ -80,41 +90,45 @@ export default function Header() {
               >
                 Community
               </Link>
+              <Link
+                href="#"
+                className="text-fill-color/70 font-semibold hover:opacity-80"
+              >
+                Web3 Tools
+              </Link>
             </nav>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-center gap-3 ml-auto">
-              {/* SOCIAL */}
+            <div className="flex items-center gap-3">
+              {/* SOCIAL + DARK MODE + BURGER MENU */}
               <Link
                 href="#"
-                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaGithub />
               </Link>
               <Link
                 href="#"
-                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaLinkedin />
               </Link>
               <Link
                 href="#"
-                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaXTwitter />
               </Link>
 
-              {/* DARK MODE */}
               <button
                 aria-label="Toggle dark mode"
                 onClick={onToggleTheme}
-                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center text-lg"
+                className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center text-lg hover:opacity-80 cursor-pointer"
               >
                 <FaSun className={!isDarkMode ? '' : 'hidden'} />
                 <FaMoon className={isDarkMode ? '' : 'hidden'} />
               </button>
 
-              {/* BURGER MENU */}
               <button
                 aria-label="Toggle menu"
                 onClick={() => setIsMenuOpen((v) => !v)}
@@ -124,6 +138,7 @@ export default function Header() {
               </button>
             </div>
           </div>
+
         </div>
       </header>
 
