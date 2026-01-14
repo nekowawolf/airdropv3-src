@@ -29,7 +29,7 @@ export default function Features() {
 
 
           {/* Card 1 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+          <div className="glass-1 card-color2 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
             <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Airdrops Tracking
@@ -44,7 +44,7 @@ export default function Features() {
           </div>
 
           {/* Card 2 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+          <div className="glass-1 card-color2 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
             <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Project + Funding Data
@@ -60,7 +60,7 @@ export default function Features() {
           </div>
 
           {/* Card 3 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+          <div className="glass-1 card-color2 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
             <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Tokenomics & Vesting
@@ -76,7 +76,7 @@ export default function Features() {
           </div>
 
           {/* Card 4 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+          <div className="glass-1 card-color2 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
             <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Claim Status
