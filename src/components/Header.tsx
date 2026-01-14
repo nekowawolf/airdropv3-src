@@ -49,11 +49,13 @@ export default function Header() {
     <>
       {/* HEADER */}
       <header
-        className={`
-          fixed top-4 left-0 right-0 z-50 px-3 sm:px-6
-          ${hidden ? '-translate-y-24 opacity-0' : 'translate-y-0 opacity-100'}
-        `}
-      >
+         className={`
+            fixed top-4 left-0 right-0 z-50 px-3 sm:px-6
+            transform transition-all duration-500 ease-in-out
+            will-change-transform
+            ${hidden ? '-translate-y-24 opacity-0' : 'translate-y-0 opacity-100'}
+          `}
+        >
         <div
           className={`
             max-w-4xl mx-auto
