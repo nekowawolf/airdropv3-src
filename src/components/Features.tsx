@@ -1,6 +1,7 @@
 'use client';
 
 import { BsStars } from "react-icons/bs";
+import { AirdropRadar, FundingChart, TokenomicsPie, ClaimSuccess } from "./ui/FeaturesAnimations";
 
 export default function Features() {
   return (
@@ -26,9 +27,10 @@ export default function Features() {
         {/* Card Grid */}
         <div className="grid grid-cols-12 gap-4 max-w-6xl mx-auto text-left">
 
+
           {/* Card 1 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all">
-            <div className="flex flex-col items-start gap-3">
+          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+            <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Airdrops Tracking
               </h3>
@@ -36,11 +38,14 @@ export default function Features() {
                 Real-time tracking of upcoming and active airdrops with detailed eligibility criteria.
               </p>
             </div>
+            <div className="mt-4 h-[200px] w-full">
+              <AirdropRadar />
+            </div>
           </div>
 
           {/* Card 2 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all">
-            <div className="flex flex-col items-start gap-3">
+          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+            <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Project + Funding Data
               </h3>
@@ -49,12 +54,14 @@ export default function Features() {
               </p>
             </div>
 
-            <div className="hidden lg:flex grow items-center justify-center min-h-[160px]" />
+            <div className="mt-4 h-[200px] w-full">
+              <FundingChart />
+            </div>
           </div>
 
           {/* Card 3 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all">
-            <div className="flex flex-col items-start gap-3">
+          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-7 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+            <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Tokenomics & Vesting
               </h3>
@@ -63,12 +70,14 @@ export default function Features() {
               </p>
             </div>
 
-            <div className="hidden lg:flex grow items-end justify-center min-h-[140px]" />
+            <div className="mt-4 h-[200px] w-full">
+              <TokenomicsPie />
+            </div>
           </div>
 
           {/* Card 4 */}
-          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all">
-            <div className="flex flex-col items-start gap-3">
+          <div className="glass-1 hover:glass-2 group relative col-span-12 md:col-span-6 lg:col-span-5 rounded-xl p-5 shadow-lg transition-all overflow-hidden">
+            <div className="flex flex-col items-start gap-3 z-10 relative">
               <h3 className="text-xl font-semibold tracking-tight text-fill-color">
                 Claim Status
               </h3>
@@ -77,7 +86,9 @@ export default function Features() {
               </p>
             </div>
 
-            <div className="hidden lg:flex grow items-end justify-center min-h-[180px]" />
+            <div className="mt-4 h-[200px] w-full">
+              <ClaimSuccess />
+            </div>
           </div>
 
         </div>
