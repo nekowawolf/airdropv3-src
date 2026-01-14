@@ -12,7 +12,9 @@ export const AirdropRadar = () => {
                     key={i}
                     className="absolute border border-blue-500 rounded-full"
                     style={{ width: i * 80, height: i * 80 }}
-                    animate={{ opacity: [0.2, 0.5, 0.2] }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: [0.2, 0.5, 0.2] }}
+                    viewport={{ once: true }}
                     transition={{ duration: 3, repeat: Infinity, delay: i * 0.4 }}
                 />
             ))}
@@ -21,7 +23,9 @@ export const AirdropRadar = () => {
             <motion.div
                 className="absolute h-[120px] w-[1px] bg-brand/50 origin-bottom"
                 style={{ top: 'calc(50% - 120px)' }}
-                animate={{ rotate: 360 }}
+                initial={{ rotate: 0 }}
+                whileInView={{ rotate: 360 }}
+                viewport={{ once: true }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             />
 
@@ -33,12 +37,16 @@ export const AirdropRadar = () => {
             {/* Blips */}
             <motion.div
                 className="absolute top-1/3 right-1/3 w-2 h-2 bg-green-400 rounded-full shadow-[0_0_10px_#4ade80]"
-                animate={{ opacity: [0, 1, 0] }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: [0, 1, 0] }}
+                viewport={{ once: true }}
                 transition={{ duration: 2, repeat: Infinity, delay: 1 }}
             />
             <motion.div
                 className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_10px_#60a5fa]"
-                animate={{ opacity: [0, 1, 0] }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: [0, 1, 0] }}
+                viewport={{ once: true }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
             />
         </div>
@@ -53,7 +61,8 @@ export const FundingChart = () => {
                     key={i}
                     className="w-8 bg-gradient-to-t from-brand/20 to-brand rounded-t-sm relative group text-fill-color"
                     initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
+                    whileInView={{ height: `${height}%` }}
+                    viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 1, delay: i * 0.1, type: "spring" }}
                 >
                     <motion.div
@@ -73,7 +82,8 @@ export const FundingChart = () => {
                     strokeWidth="0.5"
                     strokeDasharray="1 1"
                     initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 2, delay: 1 }}
                 />
             </motion.svg>
@@ -94,7 +104,8 @@ export const TokenomicsPie = () => {
                         strokeWidth="10"
                         strokeDasharray="251.2"
                         strokeDashoffset="251.2"
-                        animate={{ strokeDashoffset: 100 }}
+                        whileInView={{ strokeDashoffset: 100 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
                     />
                     {/* Segment 2 */}
@@ -105,7 +116,8 @@ export const TokenomicsPie = () => {
                         strokeWidth="10"
                         strokeDasharray="251.2"
                         strokeDashoffset="251.2"
-                        animate={{ strokeDashoffset: 200 }}
+                        whileInView={{ strokeDashoffset: 200 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
                         style={{ rotate: 216 }}
                     />
@@ -119,7 +131,8 @@ export const TokenomicsPie = () => {
             <motion.div
                 className="absolute text-fill-color top-10 right-10 card-color/80 px-2 py-1 rounded text-xs border border-brand/20 backdrop-blur-sm"
                 initial={{ x: 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 1.2 }}
             >
                 Team 15%
@@ -127,7 +140,8 @@ export const TokenomicsPie = () => {
             <motion.div
                 className="absolute text-fill-color bottom-10 left-10 card-color/80 px-2 py-1 rounded text-xs border border-purple-500/20 backdrop-blur-sm"
                 initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 1.5 }}
             >
                 Investors 25%
@@ -143,7 +157,8 @@ export const ClaimSuccess = () => {
                 <motion.div
                     className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/50"
                     initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                 >
                     <CheckCircle className="w-8 h-8 text-green-400" />
@@ -153,7 +168,8 @@ export const ClaimSuccess = () => {
                 <motion.div
                     className="absolute inset-0 rounded-full border border-green-500/30"
                     initial={{ scale: 1, opacity: 1 }}
-                    animate={{ scale: 2, opacity: 0 }}
+                    whileInView={{ scale: 2, opacity: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                 />
             </div>
@@ -161,7 +177,8 @@ export const ClaimSuccess = () => {
             <motion.div
                 className="card-color border border-border-color px-4 py-2 rounded-lg flex items-center gap-3 shadow-lg"
                 initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
             >
                 <Bell className="w-4 h-4 text-brand text-fill-color" />
