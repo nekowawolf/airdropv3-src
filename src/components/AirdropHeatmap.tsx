@@ -1,6 +1,7 @@
 'use client';
 
 import { BsFire } from "react-icons/bs";
+import { motion, Variants } from "framer-motion";
 import BlurText from "./ui/Blur-text";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -26,6 +27,22 @@ const getColor = (level: number) => {
   }
 };
 
+const cellVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.4,
+  },
+  visible: (columnIndex: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: columnIndex * 0.03,
+      duration: 0.25,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 export default function AirdropHeatmap() {
   return (
     <section className="relative py-20 overflow-hidden">
@@ -39,7 +56,7 @@ export default function AirdropHeatmap() {
 
         {/* Title */}
         <h2 className="mb-4 text-2xl font-extrabold text-fill-color sm:text-4xl xl:text-5xl">
-           <BlurText
+          <BlurText
             text="Airdrop Activity Heatmap"
             animateBy="words"
             direction="top"
@@ -57,6 +74,7 @@ export default function AirdropHeatmap() {
         <div className="mx-auto max-w-5xl overflow-x-auto lg:overflow-visible">
           <div className="flex gap-2 text-left">
 
+            {/* Day labels */}
             <div className="flex flex-col gap-2 pr-2 text-xs text-fill-color">
               {days.map((day) => (
                 <span key={day} className="h-3">
@@ -65,21 +83,30 @@ export default function AirdropHeatmap() {
               ))}
             </div>
 
-            <div
-              className="grid gap-2"
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+              className="grid gap-2 lg:scale-[0.95] xl:scale-100 origin-left"
               style={{
                 gridTemplateRows: "repeat(7, minmax(0, 1fr))",
                 gridAutoFlow: "column",
               }}
             >
-              {activityData.map((level, index) => (
-                <div
-                  key={index}
-                  className={`h-3 w-3 rounded-sm transition hover:scale-110 ${getColor(level)}`}
-                  title={`Activity level: ${level}`}
-                />
-              ))}
-            </div>
+              {activityData.map((level, index) => {
+                const columnIndex = Math.floor(index / 7);
+
+                return (
+                  <motion.div
+                    key={index}
+                    variants={cellVariants}
+                    custom={columnIndex}
+                    className={`h-3 w-3 rounded-sm ${getColor(level)}`}
+                    title={`Activity level: ${level}`}
+                  />
+                );
+              })}
+            </motion.div>
 
           </div>
 
