@@ -11,7 +11,7 @@ export const AirdropRadar = () => {
                 <motion.div
                     key={i}
                     className="absolute border border-blue-500 rounded-full"
-                    style={{ width: i * 80, height: i * 80 }}
+                    style={{ width: i * 70, height: i * 70 }}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: [0.2, 0.5, 0.2] }}
                     viewport={{ once: true }}
