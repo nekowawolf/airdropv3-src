@@ -1,14 +1,11 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
 import { BsFire } from "react-icons/bs";
 import { motion, Variants } from "framer-motion";
 import BlurText from "./ui/Blur-text";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-const activityData = Array.from({ length: 52 * 7 }, () =>
-  Math.floor(Math.random() * 5)
-);
 
 const getColor = (level: number) => {
   switch (level) {
@@ -44,8 +41,43 @@ const cellVariants: Variants = {
 };
 
 export default function AirdropHeatmap() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const [activityData, setActivityData] = useState<number[]>([]);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const data = Array.from({ length: 52 * 7 }, () =>
+      Math.floor(Math.random() * 5)
+    );
+    setActivityData(data);
+  }, []);
+
+  useEffect(() => {
+    if (!sectionRef.current || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasAnimated(true);
+          observer.disconnect(); 
+        }
+      },
+      {
+        threshold: 0.3, 
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-20 overflow-hidden"
+    >
       <div className="relative z-10 container mx-auto px-4 text-center">
 
         {/* Badge */}
@@ -83,33 +115,36 @@ export default function AirdropHeatmap() {
               ))}
             </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.35 }}
-              className="grid gap-2 lg:scale-[0.95] xl:scale-100 origin-left"
-              style={{
-                gridTemplateRows: "repeat(7, minmax(0, 1fr))",
-                gridAutoFlow: "column",
-              }}
-            >
-              {activityData.map((level, index) => {
-                const columnIndex = Math.floor(index / 7);
+            {/* Grid */}
+            {activityData.length > 0 && (
+              <motion.div
+                initial="hidden"
+                animate={hasAnimated ? "visible" : "hidden"}
+                className="grid gap-2 lg:scale-[0.95] xl:scale-100 origin-left"
+                style={{
+                  gridTemplateRows: "repeat(7, minmax(0, 1fr))",
+                  gridAutoFlow: "column",
+                }}
+              >
+                {activityData.map((level, index) => {
+                  const columnIndex = Math.floor(index / 7);
 
-                return (
-                  <motion.div
-                    key={index}
-                    variants={cellVariants}
-                    custom={columnIndex}
-                    className={`h-3 w-3 rounded-sm ${getColor(level)}`}
-                    title={`Activity level: ${level}`}
-                  />
-                );
-              })}
-            </motion.div>
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={cellVariants}
+                      custom={columnIndex}
+                      className={`h-3 w-3 rounded-sm ${getColor(level)}`}
+                      title={`Activity level: ${level}`}
+                    />
+                  );
+                })}
+              </motion.div>
+            )}
 
           </div>
 
+          {/* Legend */}
           <div className="mt-6 flex items-center justify-end gap-2 text-xs text-fill-color">
             <span>Less</span>
             {[0, 1, 2, 3, 4].map((lvl) => (
