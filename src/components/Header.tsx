@@ -27,6 +27,17 @@ export default function Header() {
       const y = window.scrollY;
       setScrolled(y > 10);
 
+      if (isMenuOpen) {
+        setHidden(false);
+
+        if (Math.abs(y - lastScrollY) > 10) {
+          setIsMenuOpen(false);
+        }
+
+        lastScrollY = y;
+        return;
+      }
+
       if (y > lastScrollY && y > 80) {
         setHidden(true);
       } else {
@@ -38,7 +49,7 @@ export default function Header() {
 
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   const onToggleTheme = () => {
     toggleDarkMode();
