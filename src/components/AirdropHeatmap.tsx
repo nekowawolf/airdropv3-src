@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BsFire } from "react-icons/bs";
 import { motion, Variants } from "framer-motion";
-import BlurText from "./ui/Blur-text";
+import TextGenerateEffect from "./ui/TextGenerateEffect";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -87,13 +87,12 @@ export default function AirdropHeatmap() {
         </span>
 
         {/* Title */}
-        <h2 className="mb-4 text-2xl font-extrabold text-fill-color sm:text-4xl xl:text-5xl">
-          <BlurText
-            text="Airdrop Activity Heatmap"
-            animateBy="words"
-            direction="top"
-            delay={120}
-            className="leading-tight justify-center"
+        <h2 className="mb-4 text-2xl font-extrabold text-fill-color sm:text-4xl xl:text-5xl text-center">
+          <TextGenerateEffect
+            words="Airdrop Activity Heatmap"
+            duration={0.6}
+            staggerDelay={0.15}
+            filter
           />
         </h2>
 
