@@ -1,8 +1,8 @@
 'use client';
 
 import Link from "next/link";
-import { Button } from "@/components/ui/moving-border";
-import HighlightText from "@/components/ui/highlight-text";
+import { Button } from "@/components/ui/MovingBorder";
+import HighlightText from "@/components/ui/HighlightText";
 import Header from "@/components/Header";
 
 export default function HeroSection() {

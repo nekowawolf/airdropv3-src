@@ -1,6 +1,7 @@
 'use client';
 
 import { BsStars } from "react-icons/bs";
+import BlurText from "./ui/Blur-text";
 import { AirdropRadar, FundingChart, TokenomicsPie, ClaimSuccess } from "./ui/FeaturesAnimations";
 
 export default function Features() {
@@ -15,9 +16,16 @@ export default function Features() {
         </span>
 
         {/* Title */}
-        <h2 className="mb-4 text-2xl font-extrabold text-fill-color sm:text-4xl xl:text-5xl">
-          Key Features of Nww Airdrop
+        <h2 className="mb-4 text-center text-2xl font-extrabold text-fill-color sm:text-4xl xl:text-5xl">
+          <BlurText
+            text="Key Features of Nww Airdrop"
+            animateBy="words"
+            direction="top"
+            delay={120}
+            className="leading-tight justify-center"
+          />
         </h2>
+
 
         {/* Description */}
         <p className="mx-auto mb-16 max-w-[714px] font-medium text-fill-color/70">
