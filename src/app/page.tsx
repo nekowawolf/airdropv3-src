@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import Features from "@/components/Features";
+import AirdropHeatmap from "@/components/AirdropHeatmap";
 
 export const metadata = {
   title: "Nww",
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <Features />
+      <AirdropHeatmap />
     </>
   );
 }
