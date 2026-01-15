@@ -10,7 +10,7 @@ const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const getColor = (level: number) => {
   switch (level) {
     case 0:
-      return "bg-white/5";
+      return "bg-gray-600/10";
     case 1:
       return "bg-blue-900/40";
     case 2:
@@ -20,7 +20,7 @@ const getColor = (level: number) => {
     case 4:
       return "bg-blue-400";
     default:
-      return "bg-white/5";
+      return "bg-gray-600/10";
   }
 };
 
