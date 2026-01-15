@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <>
       <Header />
-      <div className="relative min-h-[70svh] sm:min-h-screen overflow-hidden pt-14 sm:pt-10">
+      <div className="relative min-h-[85svh] sm:min-h-screen overflow-hidden pt-14 sm:pt-10">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-40 md:pt-40 pb-16 z-20">
           {/* GLOW CIRCLES */}
           <div className="absolute -top-40 -left-40 sm:-top-20 sm:-left-20 w-80 h-80 sm:w-72 sm:h-72 bg-blue-500/30 rounded-full blur-3xl"></div>
