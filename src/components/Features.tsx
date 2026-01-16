@@ -6,7 +6,7 @@ import { AirdropRadar, FundingChart, TokenomicsPie, ClaimSuccess } from "./ui/Fe
 
 export default function Features() {
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="features" className="relative py-20 overflow-hidden">
       <div className="relative z-10 container mx-auto px-4 text-center">
 
         {/* Badge */}

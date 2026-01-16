@@ -5,6 +5,7 @@ import AirdropHeatmap from "@/components/AirdropHeatmap";
 import { AlphaSection } from "@/components/AlphaSection";
 import FindAirdrop from "@/components/FindAirdrop";
 import Godhand from "@/components/Godhand";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Nww",
@@ -22,6 +23,7 @@ export default function HomePage() {
       <FindAirdrop />
       <Godhand />
       <FAQSection />
+      <Footer />
     </>
   );
 }

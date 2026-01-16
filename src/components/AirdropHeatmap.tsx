@@ -60,11 +60,11 @@ export default function AirdropHeatmap() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasAnimated(true);
-          observer.disconnect(); 
+          observer.disconnect();
         }
       },
       {
-        threshold: 0.3, 
+        threshold: 0.3,
       }
     );
 
@@ -76,6 +76,7 @@ export default function AirdropHeatmap() {
   return (
     <section
       ref={sectionRef}
+      id="heatmap"
       className="relative py-20 overflow-hidden"
     >
       <div className="relative z-10 container mx-auto px-4 text-center">
