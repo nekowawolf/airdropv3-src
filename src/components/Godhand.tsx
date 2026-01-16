@@ -20,7 +20,7 @@ export default function GodhandSection() {
                     alt="Folder"
                     width={96} 
                     height={96}
-                    className="w-14 sm:w-24 h-14 sm:h-24" 
+                    className="w-14 sm:w-24 h-14 sm:h-24 cursor-pointer" 
                 />
                 <p className="-mt-2 text-fill-color text-[10px] sm:text-xl font-semibold drop-shadow-md">
                     Explore Airdrop
