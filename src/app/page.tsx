@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import Features from "@/components/Features";
+import FAQSection from "@/components/FAQSection";
 import AirdropHeatmap from "@/components/AirdropHeatmap";
 import { AlphaSection } from "@/components/AlphaSection";
 import FindAirdrop from "@/components/FindAirdrop";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <AlphaSection />
       <FindAirdrop />
       <Godhand />
+      <FAQSection />
     </>
   );
 }
