@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import Features from "@/components/Features";
 import AirdropHeatmap from "@/components/AirdropHeatmap";
 import { AlphaSection } from "@/components/AlphaSection";
+import FindAirdrop from "@/components/FindAirdrop";
 
 export const metadata = {
   title: "Nww",
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Features />
       <AirdropHeatmap />
       <AlphaSection />
+      <FindAirdrop />
     </>
   );
 }
