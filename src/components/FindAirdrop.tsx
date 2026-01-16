@@ -9,7 +9,7 @@ export default function FindAirdrop() {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section id="alpha" className="relative py-20 overflow-hidden">
       <ScrollVelocity
         texts={texts}
         velocity={100}
