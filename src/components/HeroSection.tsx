@@ -9,16 +9,8 @@ export default function HeroSection() {
   return (
     <>
       <Header />
-      <div className="relative min-h-[85svh] sm:min-h-screen overflow-hidden pt-14 sm:pt-10">
+      <div className="relative min-h-[70svh] sm:min-h-[83svh] overflow-hidden pt-14 sm:pt-10 before:absolute before:inset-0 before:bg-gradient-to-b before:from-blue-600/30 before:via-blue-500/10 before:to-transparent before:pointer-events-none">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-40 md:pt-40 pb-16 z-20">
-          {/* GLOW CIRCLES */}
-          <div className="absolute -top-40 -left-40 sm:-top-20 sm:-left-20 w-80 h-80 sm:w-72 sm:h-72 bg-blue-500/30 rounded-full blur-3xl"></div>
-          <div className="absolute -top-40 -right-40 sm:top-0 sm:-right-20 w-80 h-80 sm:w-72 sm:h-72 bg-blue-700/20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-32 -right-16 sm:-bottom-36 sm:-right-20 w-40 h-40 sm:w-36 sm:h-36 bg-blue-700/50 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 sm:-bottom-36 sm:-left-36 w-60 h-60 sm:w-56 sm:h-56 bg-blue-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-r from-blue-500/50 to-blue-700/30 rounded-full blur-3xl"></div>
-          <div className="hidden sm:block absolute -bottom-12 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/10 via-blue-800/10 to-pink-500/10 rounded-full blur-[100px]"></div>
-          
           <section className="text-center relative z-10">
             {/* BADGE */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-7 mx-auto">

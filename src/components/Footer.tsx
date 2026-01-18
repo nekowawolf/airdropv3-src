@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return (
-        <footer className="relative py-10 mt-20 overflow-hidden">
+        <footer className="relative py-10 mt-20 overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-t after:from-blue-600/30 after:via-blue-500/10 after:to-transparent after:pointer-events-none">
             <div className="max-w-7xl mx-auto px-4">
 
                 {/* Large Text */}
