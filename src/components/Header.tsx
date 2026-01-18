@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaXTwitter, FaSun, FaMoon } from 'react-icons/fa6';
 import { HiOutlineX } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
+import { FaGithub, FaTelegram, FaBars } from 'react-icons/fa';
 import { toggleDarkMode } from '@/utils/darkmode';
 
 export default function Header() {
@@ -124,7 +124,7 @@ export default function Header() {
                 href="#"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
-                <FaLinkedin />
+                <FaTelegram />
               </Link>
               <Link
                 href="#"
@@ -192,7 +192,7 @@ export default function Header() {
                 href="#"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
               >
-                <FaLinkedin />
+                <FaTelegram />
               </Link>
               <Link
                 href="#"
