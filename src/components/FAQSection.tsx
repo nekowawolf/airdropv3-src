@@ -66,14 +66,21 @@ export default function FAQSection() {
                             transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
                             className={`glass-1 card-color rounded-xl overflow-hidden transition-colors duration-500 ${openIndex === index ? 'glass-2 border-brand/30' : 'hover:glass-2'}`}
                         >
-                            <button
-                                onClick={() => toggleFAQ(index)}
-                                className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none"
+                           <button
+                            onClick={() => toggleFAQ(index)}
+                            className="w-full flex items-center justify-between p-4 sm:p-6 text-left cursor-pointer focus:outline-none"
                             >
-                                <span className="text-lg font-semibold text-fill-color pr-8">{faq.question}</span>
-                                <div className="flex-shrink-0 text-brand text-fill-color">
-                                    {openIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                                </div>
+                            <span className="text-base sm:text-lg font-semibold text-fill-color pr-6 sm:pr-8">
+                                {faq.question}
+                            </span>
+
+                            <div className="flex-shrink-0 text-brand">
+                                {openIndex === index ? (
+                                    <Minus className="w-4 h-4 sm:w-5 sm:h-5" />
+                                ) : (
+                                    <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                                )}
+                            </div>
                             </button>
 
                             <AnimatePresence>
@@ -84,7 +91,7 @@ export default function FAQSection() {
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                                     >
-                                        <div className="px-6 pb-6 text-fill-color/70 leading-relaxed border-t border-white/5 pt-4">
+                                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-fill-color/70 leading-relaxed border-t border-white/5 pt-3 sm:pt-4">
                                             {faq.answer}
                                         </div>
                                     </motion.div>
