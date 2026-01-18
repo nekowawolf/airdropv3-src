@@ -9,47 +9,48 @@ export default function HeroSection() {
   return (
     <>
       <Header />
+      <div className="relative min-h-screen flex flex-col justify-center overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-b before:from-blue-600/30 before:via-blue-500/10 before:to-transparent before:pointer-events-none via-transparent">
+        <div className="relative flex-1 flex items-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-0">
+            <section className="text-center relative z-10">
 
-      <div className="relative min-h-[85svh] sm:min-h-[83svh] overflow-hidden pt-24 sm:pt-10 before:absolute before:inset-0 before:bg-gradient-to-b before:from-blue-600/30 before:via-blue-500/10 before:to-transparent before:pointer-events-none">
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 md:pt-40 pb-24 sm:pb-16 mt-12 sm:mt-0 z-20">
-          <section className="text-center relative z-10">
+              {/* BADGE */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-7 mx-auto">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                </span>
+                <span className="text-xs sm:text-sm font-medium text-fill-color">
+                  67+ Live Airdrops
+                </span>
+              </div>
 
-            {/* BADGE */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-7 mx-auto">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
-              </span>
-              <span className="text-xs sm:text-sm font-medium text-fill-color">
-                67+ Live Airdrops
-              </span>
-            </div>
+              {/* TITLE */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight">
+                <span className="text-blue-400">Nww </span>
+                <HighlightText text="Airdrop" className="text-white" />
+              </h1>
 
-            {/* TITLE */}
-            <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight">
-              <span className="text-blue-400">Nww </span>
-              <HighlightText text="Airdrop" className="text-white" />
-            </h1>
+              {/* DESCRIPTION */}
+              <p className="text-fill-color/70 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-lg sm:max-w-2xl mx-auto leading-relaxed px-4">
+                Discover ongoing and completed airdrops with clear project insights,
+                funding details, tokenomics, vesting, and claim status — all in one dashboard.
+              </p>
 
-            {/* DESCRIPTION */}
-            <p className="text-fill-color/70 text-base sm:text-lg mb-7 max-w-lg sm:max-w-2xl mx-auto leading-relaxed">
-              Discover ongoing and completed airdrops with clear project insights,
-              funding details, tokenomics, vesting, and claim status — all in one dashboard.
-            </p>
+              {/* CTA */}
+              <div className="flex justify-center">
+                <Button
+                  as={Link}
+                  href="/airdrops"
+                  className="h-12 px-7 text-base bg-gradient-to-r from-blue-500 text-white font-semibold rounded-xl hover:from-blue-600 transition-all transform hover:scale-105"
+                  containerClassName="w-auto h-auto"
+                >
+                  Explore Airdrops
+                </Button>
+              </div>
 
-            {/* CTA */}
-            <div className="flex justify-center">
-              <Button
-                as={Link}
-                href="/airdrops"
-                className="h-12 px-7 text-base bg-gradient-to-r from-blue-500 text-white font-semibold rounded-xl hover:from-blue-600"
-                containerClassName="w-auto h-auto"
-              >
-                Explore Airdrops
-              </Button>
-            </div>
-
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </>
