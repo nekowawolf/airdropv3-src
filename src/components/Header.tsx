@@ -78,7 +78,7 @@ export default function Header() {
         >
           <div className="h-full px-6 sm:px-8 flex items-center justify-between">
             {/* LEFT */}
-          <Link href="http://airdrop.nekowawolf.xyz/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <img
               src="https://nekowawolf.github.io/cdn-images/images/2026/1768368937_logo.jpg"
               alt="Logo"
@@ -92,7 +92,7 @@ export default function Header() {
             {/* NAVIGATION */}
             <nav className="hidden sm:flex items-center gap-6">
               <Link
-                href="http://airdrop.nekowawolf.xyz/" target="_blank"
+                href="/airdrops"
                 className="text-fill-color/70 font-semibold hover:opacity-80"
               >
                 Airdrops
@@ -160,7 +160,7 @@ export default function Header() {
         <div className="fixed top-[5.5rem] left-0 right-0 z-40 px-3 sm:hidden">
           <div className="max-w-7xl mx-auto rounded-xl border border-color navbar-color shadow-lg p-4 space-y-4">
             <Link
-              href="http://airdrop.nekowawolf.xyz/" target="_blank"
+              href="/airdrops"
               onClick={() => setIsMenuOpen(false)}
               className="block font-semibold text-fill-color/70"
             >

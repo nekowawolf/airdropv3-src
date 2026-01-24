@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GodhandSection() {
     return (
@@ -14,7 +15,7 @@ export default function GodhandSection() {
                 priority
             />
 
-            <div className="absolute flex flex-col items-center sm:mr-14 mr-7">
+            <Link href="/airdrops" className="absolute flex flex-col items-center sm:mr-14 mr-7">
                 <Image
                     src="/images/folder.png"
                     alt="Folder"
@@ -25,7 +26,7 @@ export default function GodhandSection() {
                 <p className="-mt-2 text-fill-color text-[10px] sm:text-xl font-semibold drop-shadow-md">
                     Explore Airdrop
                 </p>
-            </div>
+            </Link>
         </section>
     );
 }
