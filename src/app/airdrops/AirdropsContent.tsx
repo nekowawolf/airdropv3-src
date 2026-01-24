@@ -1,0 +1,118 @@
+'use client';
+
+import { useState } from 'react';
+
+const PROJECTS = [
+    {
+        name: 'Intento',
+        category: 'Tech/Community',
+        type: 'Free',
+        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
+    },
+    {
+        name: 'Dill',
+        category: 'Tech',
+        type: 'Paid',
+        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
+    },
+    {
+        name: 'Hemi',
+        category: 'Tech',
+        type: 'Ended',
+        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
+    },
+    {
+        name: 'Sunrise',
+        category: 'Tech/Community',
+        type: 'Free',
+        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
+    },
+    {
+        name: 'Nexus',
+        category: 'Tech/Community',
+        type: 'Paid',
+        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
+    },
+];
+
+export default function AirdropsContent() {
+    const [activeTab, setActiveTab] = useState('Free');
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const filteredProjects = PROJECTS.filter((project) => {
+        const matchesTab = activeTab === project.type;
+        const matchesSearch = project.name
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+        return matchesTab && matchesSearch;
+    });
+
+    return (
+        <div className="min-h-screen body-color text-fill-color p-8 pt-36 font-sans">
+            <div className="max-w-6xl mx-auto flex flex-col items-center">
+                <div className="w-full max-w-2xl mb-8 text-center">
+                    <h1 className="text-3xl font-bold mb-2">
+                        Nww Airdrop List
+                    </h1>
+                    <p className="text-fill-color/70 max-w-md mx-auto">
+                        Explore ongoing and completed airdrops with clear project details,
+                        tokenomics, vesting, and claim status in one place.
+                    </p>
+                </div>
+
+                {/* Search Bar */}
+                <div className="w-full max-w-xl mb-6 relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-fill-color/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Search Project"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full py-3 pl-12 pr-6 rounded-full card-color border border-color focus:outline-none focus:border-blue-500 transition-colors text-fill-color placeholder:text-fill-color/50"
+                    />
+                </div>
+
+                {/* Filter Tabs */}
+                <div className="mb-12 p-1 card-color rounded-full inline-flex border border-color/30">
+                    {['Free', 'Paid', 'Ended'].map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                activeTab === tab
+                                    ? 'bg-[#6366f1] text-white shadow-lg'
+                                    : 'text-fill-color/60 hover:text-fill-color'
+                            }`}
+                        >
+                            {tab}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Project Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+                    {filteredProjects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 transition-all cursor-pointer group"
+                        >
+                            <div className="mb-6 group-hover:scale-110 transition-transform">
+                                <img
+                                    src={project.icon}
+                                    alt={project.name}
+                                    className="w-16 h-16 object-contain mx-auto rounded-md"
+                                />
+                            </div>
+                            <h3 className="text-xl font-bold mb-1">{project.name}</h3>
+                            <p className="text-sm text-fill-color/60">{project.category}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
