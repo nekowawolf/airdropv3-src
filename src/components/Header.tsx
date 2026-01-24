@@ -78,7 +78,7 @@ export default function Header() {
         >
           <div className="h-full px-6 sm:px-8 flex items-center justify-between">
             {/* LEFT */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="http://airdrop.nekowawolf.xyz/" className="flex items-center gap-2">
             <img
               src="https://nekowawolf.github.io/cdn-images/images/2026/1768368937_logo.jpg"
               alt="Logo"
@@ -92,13 +92,13 @@ export default function Header() {
             {/* NAVIGATION */}
             <nav className="hidden sm:flex items-center gap-6">
               <Link
-                href="#"
+                href="http://airdrop.nekowawolf.xyz/" target="_blank"
                 className="text-fill-color/70 font-semibold hover:opacity-80"
               >
                 Airdrops
               </Link>
               <Link
-                href="#"
+                href="https://cmty.nekowawolf.xyz/" target="_blank"
                 className="text-fill-color/70 font-semibold hover:opacity-80"
               >
                 Community
@@ -115,19 +115,19 @@ export default function Header() {
             <div className="flex items-center gap-3">
               {/* SOCIAL + DARK MODE + BURGER MENU */}
               <Link
-                href="#"
+                href="https://github.com/nekowawolf/" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaGithub />
               </Link>
               <Link
-                href="#"
+                href="https://web.telegram.org/" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaTelegram />
               </Link>
               <Link
-                href="#"
+                href="https://x.com/nekowawolf_" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color hidden sm:flex items-center justify-center hover:opacity-80"
               >
                 <FaXTwitter />
@@ -160,21 +160,21 @@ export default function Header() {
         <div className="fixed top-[5.5rem] left-0 right-0 z-40 px-3 sm:hidden">
           <div className="max-w-7xl mx-auto rounded-xl border border-color navbar-color shadow-lg p-4 space-y-4">
             <Link
-              href="#"
+              href="http://airdrop.nekowawolf.xyz/" target="_blank"
               onClick={() => setIsMenuOpen(false)}
               className="block font-semibold text-fill-color/70"
             >
               Airdrops
             </Link>
             <Link
-              href="#"
+              href="https://cmty.nekowawolf.xyz/" target="_blank"
               onClick={() => setIsMenuOpen(false)}
               className="block font-semibold text-fill-color/70"
             >
               Community
             </Link>
              <Link
-              href="#"
+              href=""
               onClick={() => setIsMenuOpen(false)}
               className="block font-semibold text-fill-color/70"
             >
@@ -183,19 +183,19 @@ export default function Header() {
 
             <div className="flex gap-3 pt-2">
               <Link
-                href="#"
+                href="https://github.com/nekowawolf/" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
               >
                 <FaGithub />
               </Link>
               <Link
-                href="#"
+                href="https://web.telegram.org/" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
               >
                 <FaTelegram />
               </Link>
               <Link
-                href="#"
+                href="https://x.com/nekowawolf_" target="_blank"
                 className="card-color w-9 h-9 text-fill-color rounded-full border border-color flex items-center justify-center"
               >
                 <FaXTwitter />
