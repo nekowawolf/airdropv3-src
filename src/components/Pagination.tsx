@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -7,6 +6,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  PaginationEllipsis,
 } from "@/components/ui/pagination";
 
 interface PaginationProps {
@@ -20,7 +20,22 @@ export default function PaginationTabs({
   totalPages,
   onPageChange,
 }: PaginationProps) {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const getVisiblePages = () => {
+    if (totalPages <= 6) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    if (currentPage <= 4) {
+      return [1, 2, 3, 4, '...', totalPages];
+    }
+    if (currentPage >= totalPages - 3) {
+      return [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    }
+    return [1, '...', currentPage, currentPage + 1, '...', totalPages];
+  };
+
+  const visiblePages = getVisiblePages();
 
   const handlePrevious = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,10 +59,19 @@ export default function PaginationTabs({
           />
         </PaginationItem>
 
-        {pages.map((page) => {
-          const isActive = page === currentPage;
+        {visiblePages.map((page, index) => {
+          if (page === '...') {
+            return (
+              <PaginationItem key={`ellipsis-${index}`}>
+                <PaginationEllipsis className="text-fill-color/60" />
+              </PaginationItem>
+            );
+          }
+
+          const pageNum = page as number;
+          const isActive = pageNum === currentPage;
           return (
-            <PaginationItem key={page}>
+            <PaginationItem key={pageNum}>
               <PaginationLink
                 className={cn(
                   "cursor-pointer border border-color/30 text-fill-color hover:bg-white/5 hover:text-fill-color/80 transition-colors",
@@ -56,11 +80,11 @@ export default function PaginationTabs({
                 isActive={isActive}
                 onClick={(e) => {
                   e.preventDefault();
-                  onPageChange(page);
+                  onPageChange(pageNum);
                 }}
                 href="#"
               >
-                {page}
+                {pageNum}
               </PaginationLink>
             </PaginationItem>
           );
