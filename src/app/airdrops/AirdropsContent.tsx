@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import PaginationTabs from '@/components/Pagination';
 
 const PROJECTS = [
     {
@@ -38,6 +39,8 @@ const PROJECTS = [
 export default function AirdropsContent() {
     const [activeTab, setActiveTab] = useState('Free');
     const [searchQuery, setSearchQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 8;
 
     const filteredProjects = PROJECTS.filter((project) => {
         const matchesTab = activeTab === project.type;
@@ -46,6 +49,16 @@ export default function AirdropsContent() {
             .includes(searchQuery.toLowerCase());
         return matchesTab && matchesSearch;
     });
+
+    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+    const displayedProjects = filteredProjects.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [activeTab, searchQuery]);
 
     return (
         <div className="min-h-screen body-color text-fill-color p-8 pt-36 font-sans">
@@ -82,11 +95,10 @@ export default function AirdropsContent() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                activeTab === tab
+                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
                                     ? 'bg-[#6366f1] text-white shadow-lg'
                                     : 'text-fill-color/60 hover:text-fill-color'
-                            }`}
+                                }`}
                         >
                             {tab}
                         </button>
@@ -95,7 +107,7 @@ export default function AirdropsContent() {
 
                 {/* Project Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-                    {filteredProjects.map((project, index) => (
+                    {displayedProjects.map((project, index) => (
                         <div
                             key={index}
                             className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 transition-all cursor-pointer group"
@@ -112,6 +124,15 @@ export default function AirdropsContent() {
                         </div>
                     ))}
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <PaginationTabs
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                )}
             </div>
         </div>
     );
