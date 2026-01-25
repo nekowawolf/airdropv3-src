@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import PaginationTabs from '@/components/Pagination';
 import { Spinner } from "@/components/ui/spinner";
 import { useAirdrops } from '@/hooks/useAirdrops';
@@ -88,9 +89,10 @@ export default function AirdropsContent() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                             {displayedProjects.length > 0 ? (
                                 displayedProjects.map((project, index) => (
-                                    <div
+                                    <Link
                                         key={project.id || index}
-                                        className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 cursor-pointer group"
+                                        href={`/airdrops/${project.id || ''}`}
+                                        className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 cursor-pointer group block"
                                     >
                                         <div className="mb-6 group-hover:scale-110 transition-transform">
                                             {project.image_url ? (
@@ -107,7 +109,7 @@ export default function AirdropsContent() {
                                         </div>
                                         <h3 className="text-xl font-bold mb-1">{project.name}</h3>
                                         <p className="text-sm text-fill-color/60">{project.task}</p>
-                                    </div>
+                                    </Link>
                                 ))
                             ) : (
                                 <div className="col-span-full text-center text-fill-color/50 py-12">

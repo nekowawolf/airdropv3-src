@@ -98,3 +98,37 @@ export const fetchEndedAirdrops = async (): Promise<Airdrop[]> => {
         return [];
     }
 };
+
+export const fetchAirdropById = async (id: string): Promise<Airdrop | null> => {
+    try {
+        const res = await fetch(API_ENDPOINTS.all);
+        if (!res.ok) throw new Error('Failed to fetch airdrops for detail');
+
+        const items = extractData(await res.json());
+        const found = items.find((item: any) => item.id === id || item._id === id);
+
+        if (found) return found;
+
+        const [freeRes, paidRes] = await Promise.all([
+            fetch(API_ENDPOINTS.free),
+            fetch(API_ENDPOINTS.paid)
+        ]);
+
+        if (freeRes.ok) {
+            const freeItems = extractData(await freeRes.json());
+            const freeFound = freeItems.find((item: any) => item.id === id || item._id === id);
+            if (freeFound) return freeFound;
+        }
+
+        if (paidRes.ok) {
+            const paidItems = extractData(await paidRes.json());
+            const paidFound = paidItems.find((item: any) => item.id === id || item._id === id);
+            if (paidFound) return paidFound;
+        }
+
+        return null;
+    } catch (error) {
+        console.error('fetchAirdropById error:', error);
+        return null;
+    }
+};
