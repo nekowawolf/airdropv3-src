@@ -75,7 +75,7 @@ export default function PaginationTabs({
               <PaginationLink
                 className={cn(
                   "cursor-pointer border border-color/30 text-fill-color hover:bg-white/5 hover:text-fill-color/80 transition-colors",
-                  isActive && "bg-blue-400 border-blue-400 text-white hover:bg-blue-400 hover:text-white"
+                  isActive && "bg-blue-400/30 text-blue-400 hover:bg-blue-500/50"
                 )}
                 isActive={isActive}
                 onClick={(e) => {

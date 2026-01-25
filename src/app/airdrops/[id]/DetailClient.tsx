@@ -155,6 +155,19 @@ export default function AirdropDetail() {
                                         <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
                                     </a>
                                 )}
+                                {airdrop.status === 'ended' && airdrop.link_claim && (
+                                    <a
+                                        href={airdrop.link_claim}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                       className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group"
+                                    >
+                                        <span className="font-medium">
+                                            Claim Airdrop
+                                        </span>
+                                       <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
+                                    </a>
+                                )}
                                 {airdrop.link_twitter && (
                                     <a
                                         href={airdrop.link_twitter}
