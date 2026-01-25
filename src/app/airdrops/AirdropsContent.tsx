@@ -2,49 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import PaginationTabs from '@/components/Pagination';
-
-const PROJECTS = [
-    {
-        name: 'Intento',
-        category: 'Tech/Community',
-        type: 'Free',
-        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
-    },
-    {
-        name: 'Dill',
-        category: 'Tech',
-        type: 'Paid',
-        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
-    },
-    {
-        name: 'Hemi',
-        category: 'Tech',
-        type: 'Ended',
-        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
-    },
-    {
-        name: 'Sunrise',
-        category: 'Tech/Community',
-        type: 'Free',
-        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
-    },
-    {
-        name: 'Nexus',
-        category: 'Tech/Community',
-        type: 'Paid',
-        icon: 'https://pbs.twimg.com/profile_images/1966155763883106304/eUbIV6Cm_400x400.jpg',
-    },
-];
+import { Spinner } from "@/components/ui/spinner";
+import { useAirdrops } from '@/hooks/useAirdrops';
 
 export default function AirdropsContent() {
+    const { airdrops, loading, error } = useAirdrops();
     const [activeTab, setActiveTab] = useState('Free');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const ITEMS_PER_PAGE = 8;
 
-    const filteredProjects = PROJECTS.filter((project) => {
+    const filteredProjects = airdrops.filter((project) => {
         const matchesTab = activeTab === project.type;
-        const matchesSearch = project.name
+        const matchesSearch = (project.name || '')
             .toLowerCase()
             .includes(searchQuery.toLowerCase());
         return matchesTab && matchesSearch;
@@ -96,8 +66,8 @@ export default function AirdropsContent() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
-                                    ? 'bg-[#6366f1] text-white shadow-lg'
-                                    : 'text-fill-color/60 hover:text-fill-color'
+                                ? 'bg-[#6366f1] text-white shadow-lg'
+                                : 'text-fill-color/60 hover:text-fill-color'
                                 }`}
                         >
                             {tab}
@@ -105,33 +75,56 @@ export default function AirdropsContent() {
                     ))}
                 </div>
 
-                {/* Project Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-                    {displayedProjects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 transition-all cursor-pointer group"
-                        >
-                            <div className="mb-6 group-hover:scale-110 transition-transform">
-                                <img
-                                    src={project.icon}
-                                    alt={project.name}
-                                    className="w-16 h-16 object-contain mx-auto rounded-md"
-                                />
-                            </div>
-                            <h3 className="text-xl font-bold mb-1">{project.name}</h3>
-                            <p className="text-sm text-fill-color/60">{project.category}</p>
+                {/* Content Area */}
+                {loading ? (
+                    <div className="flex justify-center py-10">
+                        <Spinner className="text-blue-500 size-10" />
+                    </div>
+                ) : error ? (
+                    <div className="text-red-500 text-center">{error}</div>
+                ) : (
+                    <>
+                        {/* Project Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+                            {displayedProjects.length > 0 ? (
+                                displayedProjects.map((project, index) => (
+                                    <div
+                                        key={project.id || index}
+                                        className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 transition-all cursor-pointer group"
+                                    >
+                                        <div className="mb-6 group-hover:scale-110 transition-transform">
+                                            {project.image_url ? (
+                                                <img
+                                                    src={project.image_url}
+                                                    alt={project.name}
+                                                    className="w-16 h-16 object-contain mx-auto rounded-md"
+                                                />
+                                            ) : (
+                                                <div className="w-16 h-16 bg-gray-700 rounded-md mx-auto flex items-center justify-center text-2xl">
+                                                    ?
+                                                </div>
+                                            )}
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-1">{project.name}</h3>
+                                        <p className="text-sm text-fill-color/60">{project.task}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="col-span-full text-center text-fill-color/50 py-12">
+                                    No airdrops found.
+                                </div>
+                            )}
                         </div>
-                    ))}
-                </div>
 
-                {/* Pagination */}
-                {totalPages > 1 && (
-                    <PaginationTabs
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                    />
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <PaginationTabs
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setCurrentPage}
+                            />
+                        )}
+                    </>
                 )}
             </div>
         </div>
