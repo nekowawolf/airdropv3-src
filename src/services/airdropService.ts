@@ -16,13 +16,25 @@ const extractData = (data: any): any[] => {
     return [];
 };
 
-const sortByNewest = (items: any[]) => {
-    return items.sort(
+const sortByCreatedAtDesc = (items: any[]) =>
+    items.sort(
         (a, b) =>
             new Date(b.created_at).getTime() -
             new Date(a.created_at).getTime()
     );
-};
+
+const sortEndedByEndedAtDesc = (items: any[]) =>
+    items.sort((a, b) => {
+        const endA = a.ended_at ? new Date(a.ended_at).getTime() : 0;
+        const endB = b.ended_at ? new Date(b.ended_at).getTime() : 0;
+
+        if (endA !== endB) return endB - endA;
+
+        return (
+            new Date(b.created_at).getTime() -
+            new Date(a.created_at).getTime()
+        );
+    });
 
 export const fetchFreeAirdrops = async (): Promise<Airdrop[]> => {
     try {
@@ -31,7 +43,7 @@ export const fetchFreeAirdrops = async (): Promise<Airdrop[]> => {
 
         const items = extractData(await res.json());
 
-        return sortByNewest(
+        return sortByCreatedAtDesc(
             items
                 .filter((item: any) => item.status === 'active')
                 .map((item: any) => ({
@@ -52,7 +64,7 @@ export const fetchPaidAirdrops = async (): Promise<Airdrop[]> => {
 
         const items = extractData(await res.json());
 
-        return sortByNewest(
+        return sortByCreatedAtDesc(
             items
                 .filter((item: any) => item.status === 'active')
                 .map((item: any) => ({
@@ -73,7 +85,7 @@ export const fetchEndedAirdrops = async (): Promise<Airdrop[]> => {
 
         const items = extractData(await res.json());
 
-        return sortByNewest(
+        return sortEndedByEndedAtDesc(
             items
                 .filter((item: any) => item.status === 'ended')
                 .map((item: any) => ({
