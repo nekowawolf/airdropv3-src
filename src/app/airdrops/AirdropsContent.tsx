@@ -55,7 +55,7 @@ export default function AirdropsContent() {
                         placeholder="Search Project"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full py-3 pl-12 pr-6 rounded-full card-color border border-color focus:outline-none focus:border-blue-500 transition-colors text-fill-color placeholder:text-fill-color/50"
+                        className="w-full py-3 pl-12 pr-6 rounded-full card-color border border-color focus:outline-none focus:border-blue-500 text-fill-color placeholder:text-fill-color/50"
                     />
                 </div>
 
@@ -65,7 +65,7 @@ export default function AirdropsContent() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
+                            className={`px-6 py-2 rounded-full text-sm font-medium ${activeTab === tab
                                 ? 'bg-[#6366f1] text-white shadow-lg'
                                 : 'text-fill-color/60 hover:text-fill-color'
                                 }`}
@@ -90,7 +90,7 @@ export default function AirdropsContent() {
                                 displayedProjects.map((project, index) => (
                                     <div
                                         key={project.id || index}
-                                        className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 transition-all cursor-pointer group"
+                                        className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 cursor-pointer group"
                                     >
                                         <div className="mb-6 group-hover:scale-110 transition-transform">
                                             {project.image_url ? (
@@ -100,7 +100,7 @@ export default function AirdropsContent() {
                                                     className="w-16 h-16 object-contain mx-auto rounded-md"
                                                 />
                                             ) : (
-                                                <div className="w-16 h-16 bg-gray-700 rounded-md mx-auto flex items-center justify-center text-2xl">
+                                                <div className="w-16 h-16 card-color rounded-md mx-auto flex items-center justify-center text-2xl">
                                                     ?
                                                 </div>
                                             )}
