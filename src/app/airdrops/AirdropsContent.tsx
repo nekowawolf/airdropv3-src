@@ -67,7 +67,7 @@ export default function AirdropsContent() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`px-6 py-2 rounded-full text-sm font-medium ${activeTab === tab
-                                ? 'bg-blue-400/30 text-blue-400 text-sm shadow-lg'
+                                ? 'bg-blue-400/80 text-fill-color text-sm shadow-lg'
                                 : 'text-fill-color/60 hover:text-fill-color'
                                 }`}
                         >

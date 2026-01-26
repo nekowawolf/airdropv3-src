@@ -70,9 +70,11 @@ body {
 .text-fill-color\/60 {
   color: rgba(var(--fill-color-rgb), 0.6);
 }
+
 .text-fill-color\/70 {
   color: rgba(var(--fill-color-rgb), 0.7);
 }
+
 .text-fill-color\/80 {
   color: rgba(var(--fill-color-rgb), 0.8);
 }
@@ -80,8 +82,13 @@ body {
 .border-color {
   border-color: var(--border-color);
 }
+
 .border-color {
   border: 1px solid var(--border-color);
+}
+
+.border-divider-b {
+  border-bottom: 1px solid var(--border-divider);
 }
 
 .navbar-color {
