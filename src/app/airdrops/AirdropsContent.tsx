@@ -2,23 +2,59 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import PaginationTabs from '@/components/Pagination';
 import { Spinner } from "@/components/ui/spinner";
 import { useAirdrops } from '@/hooks/useAirdrops';
+import { Airdrop } from '@/types/airdrop';
 
 export default function AirdropsContent() {
-    const { airdrops, loading, error } = useAirdrops();
-    const [activeTab, setActiveTab] = useState('Free');
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const rawTab = searchParams.get('tab');
+    const activeTab = rawTab ? rawTab.charAt(0).toUpperCase() + rawTab.slice(1).toLowerCase() : 'Free';
+
+    const {
+        freeAirdrops, paidAirdrops, endedAirdrops,
+        loadingFree, loadingPaid, loadingEnded,
+        error,
+        getFree, getPaid, getEnded
+    } = useAirdrops();
+
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const ITEMS_PER_PAGE = 8;
 
-    const filteredProjects = airdrops.filter((project) => {
-        const matchesTab = activeTab === project.type;
+    useEffect(() => {
+        if (activeTab === 'Free') {
+            getFree();
+        } else if (activeTab === 'Paid') {
+            getPaid();
+        } else if (activeTab === 'Ended') {
+            getEnded();
+        }
+    }, [activeTab, getFree, getPaid, getEnded]);
+
+    let currentData: Airdrop[] = [];
+    let isLoading = false;
+
+    if (activeTab === 'Free') {
+        currentData = freeAirdrops;
+        isLoading = loadingFree;
+    } else if (activeTab === 'Paid') {
+        currentData = paidAirdrops;
+        isLoading = loadingPaid;
+    } else if (activeTab === 'Ended') {
+        currentData = endedAirdrops;
+        isLoading = loadingEnded;
+    }
+
+    const filteredProjects = currentData.filter((project) => {
         const matchesSearch = (project.name || '')
             .toLowerCase()
             .includes(searchQuery.toLowerCase());
-        return matchesTab && matchesSearch;
+        return matchesSearch;
     });
 
     const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
@@ -30,6 +66,12 @@ export default function AirdropsContent() {
     useEffect(() => {
         setCurrentPage(1);
     }, [activeTab, searchQuery]);
+
+    const handleTabChange = (tab: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('tab', tab.toLowerCase());
+        router.push(`?${params.toString()}`, { scroll: false });
+    };
 
     return (
         <div className="min-h-screen body-color text-fill-color p-8 pt-36 font-sans">
@@ -65,7 +107,7 @@ export default function AirdropsContent() {
                     {['Free', 'Paid', 'Ended'].map((tab) => (
                         <button
                             key={tab}
-                            onClick={() => setActiveTab(tab)}
+                            onClick={() => handleTabChange(tab)}
                             className={`px-6 py-2 rounded-full text-sm font-medium ${activeTab === tab
                                 ? 'bg-blue-400/80 text-fill-color text-sm shadow-lg'
                                 : 'text-fill-color/60 hover:text-fill-color'
@@ -77,7 +119,7 @@ export default function AirdropsContent() {
                 </div>
 
                 {/* Content Area */}
-                {loading ? (
+                {isLoading ? (
                     <div className="flex justify-center py-10">
                         <Spinner className="text-blue-500 size-10" />
                     </div>
@@ -91,7 +133,7 @@ export default function AirdropsContent() {
                                 displayedProjects.map((project, index) => (
                                     <Link
                                         key={project.id || index}
-                                        href={`/airdrops/${project.id || ''}`}
+                                        href={`/airdrops/${project.id || ''}?tab=${activeTab.toLowerCase()}`}
                                         className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 cursor-pointer group block"
                                     >
                                         <div className="mb-6 group-hover:scale-110 transition-transform">
