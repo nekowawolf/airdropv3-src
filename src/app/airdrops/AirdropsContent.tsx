@@ -6,7 +6,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import PaginationTabs from '@/components/Pagination';
 import { Spinner } from "@/components/ui/spinner";
 import { useAirdrops } from '@/hooks/useAirdrops';
-import { Airdrop } from '@/types/airdrop';
+import { Airdrop, FilterOptions } from '@/types/airdrop';
+import FilterDropdown from '@/components/FilterDropdown';
 
 export default function AirdropsContent() {
     const router = useRouter();
@@ -26,6 +27,7 @@ export default function AirdropsContent() {
     } = useAirdrops();
 
     const [searchQuery, setSearchQuery] = useState('');
+    const [filters, setFilters] = useState<FilterOptions>({});
     const [currentPage, setCurrentPage] = useState(initialPage);
     const ITEMS_PER_PAGE = 8;
 
@@ -37,6 +39,7 @@ export default function AirdropsContent() {
         } else if (activeTab === 'Ended') {
             getEnded();
         }
+        setFilters({});
     }, [activeTab, getFree, getPaid, getEnded]);
 
     useEffect(() => {
@@ -85,6 +88,25 @@ export default function AirdropsContent() {
         const matchesSearch = (project.name || '')
             .toLowerCase()
             .includes(searchQuery.toLowerCase());
+
+        const normalize = (s: string) => s?.toLowerCase().trim() || '';
+
+        if (filters.levels && filters.levels.length > 0) {
+            const pLevel = normalize(project.level);
+            if (!filters.levels.includes(pLevel)) return false;
+        }
+
+        if (filters.tasks && filters.tasks.length > 0) {
+            const pTask = normalize(project.task);
+            const hasMatch = filters.tasks.some(filterTask => pTask.includes(filterTask));
+            if (!hasMatch) return false;
+        }
+
+        if (filters.vesting && filters.vesting.length > 0) {
+            const pVesting = normalize(project.vesting);
+            if (!filters.vesting.includes(pVesting)) return false;
+        }
+
         return matchesSearch;
     });
 
@@ -140,20 +162,31 @@ export default function AirdropsContent() {
                     />
                 </div>
 
-                {/* Filter Tabs */}
-                <div className="mb-12 p-1 card-color rounded-full inline-flex border border-color/30">
-                    {['Free', 'Paid', 'Ended'].map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => handleTabChange(tab)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium ${activeTab === tab
-                                ? 'bg-blue-400/80 text-fill-color text-sm shadow-lg'
-                                : 'text-fill-color/60 hover:text-fill-color'
-                                }`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
+                {/* Filter Tabs & Dropdown */}
+                <div className="mb-12 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto px-4 sm:px-0">
+                    <div className="p-1 card-color rounded-full flex sm:inline-flex border border-color/30 w-full sm:w-auto relative">
+                        {['Free', 'Paid', 'Ended'].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => handleTabChange(tab)}
+                                className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 rounded-full text-sm font-medium transition-all ${activeTab === tab
+                                    ? 'bg-blue-400/80 text-fill-color shadow-lg'
+                                    : 'text-fill-color/60 hover:text-fill-color'
+                                    }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="w-full sm:w-auto flex justify-center">
+                        <FilterDropdown
+                            type={activeTab as 'Free' | 'Paid' | 'Ended'}
+                            filters={filters}
+                            setFilters={setFilters}
+                            resetFilters={() => setFilters({})}
+                        />
+                    </div>
                 </div>
 
                 {/* Content Area */}

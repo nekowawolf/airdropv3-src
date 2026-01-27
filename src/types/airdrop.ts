@@ -26,3 +26,9 @@ export interface Airdrop {
 
 export type AirdropFree = Airdrop;
 export type AirdropPaid = Airdrop;
+
+export interface FilterOptions {
+    levels?: string[];
+    tasks?: string[];
+    vesting?: string[];
+}
