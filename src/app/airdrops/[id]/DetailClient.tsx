@@ -123,6 +123,14 @@ export default function AirdropDetail() {
                                         {new Date(airdrop.created_at).toLocaleDateString()}
                                     </span>
                                 </div>
+                                {airdrop.status === 'ended' && airdrop.ended_at && (
+                                    <div className="flex justify-between border-divider-t pt-3 mt-3">
+                                        <span className="text-fill-color/60">Ended On</span>
+                                        <span className="font-medium text-right">
+                                            {new Date(airdrop.ended_at).toLocaleDateString()}
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -138,7 +146,7 @@ export default function AirdropDetail() {
                                         href={airdrop.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-between p-3 rounded-xl card-color transition-colors group"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
                                     >
                                         <span className="font-medium">Website</span>
                                         <Globe size={16} className="text-fill-color/40 group-hover:text-fill-color" />
@@ -149,7 +157,7 @@ export default function AirdropDetail() {
                                         href={airdrop.link_guide}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-between p-3 rounded-xl card-color transition-colors group"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
                                     >
                                         <span className="font-medium">Step-by-Step Guide</span>
                                         <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
@@ -160,12 +168,12 @@ export default function AirdropDetail() {
                                         href={airdrop.link_claim}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                       className="flex items-center justify-between p-3 rounded-xl card-color transition-colors group"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
                                     >
                                         <span className="font-medium">
                                             Claim Airdrop
                                         </span>
-                                       <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
+                                        <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
                                     </a>
                                 )}
                                 {airdrop.link_twitter && (
@@ -173,7 +181,7 @@ export default function AirdropDetail() {
                                         href={airdrop.link_twitter}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-between p-3 rounded-xl card-color transition-colors group"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
                                     >
                                         <span className="font-medium">Twitter</span>
                                         <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
@@ -184,7 +192,7 @@ export default function AirdropDetail() {
                                         href={airdrop.link_discord}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-between p-3 rounded-xl card-color transition-colors group"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
                                     >
                                         <span className="font-medium">Discord</span>
                                         <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />

@@ -94,6 +94,7 @@ body {
 .navbar-color {
   background-color: #1f2937;
 }
+
 .darkmode .navbar-color {
   background-color: #fbfcfe;
 }
@@ -102,4 +103,25 @@ body {
   background-color: var(--card-color2);
   border: 1px solid var(--border-color);
   backdrop-filter: blur(8px);
+}
+
+.card-hover {
+  transition: none;
+}
+
+.card-hover:hover {
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease,
+    filter 0.15s ease;
+
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.darkmode .card-hover:hover {
+  filter: brightness(0.97);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.15);
 }

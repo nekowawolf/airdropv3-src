@@ -15,6 +15,9 @@ export default function AirdropsContent() {
     const rawTab = searchParams.get('tab');
     const activeTab = rawTab ? rawTab.charAt(0).toUpperCase() + rawTab.slice(1).toLowerCase() : 'Free';
 
+    const rawPage = searchParams.get('page');
+    const initialPage = rawPage && !isNaN(parseInt(rawPage, 10)) ? parseInt(rawPage, 10) : 1;
+
     const {
         freeAirdrops, paidAirdrops, endedAirdrops,
         loadingFree, loadingPaid, loadingEnded,
@@ -23,7 +26,7 @@ export default function AirdropsContent() {
     } = useAirdrops();
 
     const [searchQuery, setSearchQuery] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(initialPage);
     const ITEMS_PER_PAGE = 8;
 
     useEffect(() => {
@@ -35,6 +38,34 @@ export default function AirdropsContent() {
             getEnded();
         }
     }, [activeTab, getFree, getPaid, getEnded]);
+
+    useEffect(() => {
+        const prefetchOthers = async () => {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            if (activeTab === 'Free') {
+                getPaid();
+                getEnded();
+            } else if (activeTab === 'Paid') {
+                getFree();
+                getEnded();
+            } else if (activeTab === 'Ended') {
+                getFree();
+                getPaid();
+            }
+        };
+
+        prefetchOthers();
+    }, [activeTab, getFree, getPaid, getEnded]);
+
+    useEffect(() => {
+        const page = searchParams.get('page');
+        if (page && !isNaN(parseInt(page, 10))) {
+            setCurrentPage(parseInt(page, 10));
+        } else {
+            setCurrentPage(1);
+        }
+    }, [searchParams]);
 
     let currentData: Airdrop[] = [];
     let isLoading = false;
@@ -64,12 +95,19 @@ export default function AirdropsContent() {
     );
 
     useEffect(() => {
-        setCurrentPage(1);
+
     }, [activeTab, searchQuery]);
 
     const handleTabChange = (tab: string) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('tab', tab.toLowerCase());
+        params.delete('page');
+        router.push(`?${params.toString()}`, { scroll: false });
+    };
+
+    const handlePageChange = (page: number) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('page', page.toString());
         router.push(`?${params.toString()}`, { scroll: false });
     };
 
@@ -133,7 +171,7 @@ export default function AirdropsContent() {
                                 displayedProjects.map((project, index) => (
                                     <Link
                                         key={project.id || index}
-                                        href={`/airdrops/${project.id || ''}?tab=${activeTab.toLowerCase()}`}
+                                        href={`/airdrops/${project.id || ''}?tab=${activeTab.toLowerCase()}&page=${currentPage}`}
                                         className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-opacity-80 cursor-pointer group block"
                                     >
                                         <div className="mb-6 group-hover:scale-110 transition-transform">
@@ -165,7 +203,7 @@ export default function AirdropsContent() {
                             <PaginationTabs
                                 currentPage={currentPage}
                                 totalPages={totalPages}
-                                onPageChange={setCurrentPage}
+                                onPageChange={handlePageChange}
                             />
                         )}
                     </>
