@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import PaginationTabs from '@/components/Pagination';
@@ -116,9 +116,15 @@ export default function AirdropsContent() {
         currentPage * ITEMS_PER_PAGE
     );
 
-    useEffect(() => {
+    const isFirstRender = useRef(true);
 
-    }, [activeTab, searchQuery]);
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        handlePageChange(1);
+    }, [searchQuery, filters]);
 
     const handleTabChange = (tab: string) => {
         const params = new URLSearchParams(searchParams.toString());
