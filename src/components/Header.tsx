@@ -98,7 +98,7 @@ export default function Header() {
                 Airdrops
               </Link>
               <Link
-                href="https://cmty.nekowawolf.xyz/" target="_blank"
+                href="https://cc.nekowawolf.xyz/" target="_blank"
                 className="text-fill-color/70 font-semibold hover:opacity-80"
               >
                 Community
@@ -167,7 +167,7 @@ export default function Header() {
               Airdrops
             </Link>
             <Link
-              href="https://cmty.nekowawolf.xyz/" target="_blank"
+              href="https://cc.nekowawolf.xyz/" target="_blank"
               onClick={() => setIsMenuOpen(false)}
               className="block font-semibold text-fill-color/70"
             >
