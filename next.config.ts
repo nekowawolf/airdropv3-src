@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'imgur.com' },
       { protocol: 'https', hostname: 'i.imgur.com' },
       { protocol: 'https', hostname: 'source.unsplash.com' },
+      { protocol: 'https', hostname: 'img.cryptorank.io' },
     ],
   },
 };
