@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import PaginationTabs from '@/components/Pagination';
 import { Spinner } from "@/components/ui/spinner";
@@ -215,9 +216,11 @@ export default function AirdropsContent() {
                                     >
                                         <div className="mb-6 group-hover:scale-110 transition-transform">
                                             {project.image_url ? (
-                                                <img
+                                                <Image
                                                     src={project.image_url}
                                                     alt={project.name}
+                                                    width={64}
+                                                    height={64}
                                                     className="w-16 h-16 object-contain mx-auto rounded-md"
                                                 />
                                             ) : (

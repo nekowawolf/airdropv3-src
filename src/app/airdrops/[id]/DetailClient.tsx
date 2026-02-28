@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { fetchAirdropById } from '@/services/airdropService';
 import { Airdrop } from '@/types/airdrop';
@@ -70,13 +71,21 @@ export default function AirdropDetail() {
                     {/* Header Section */}
                     <div className="glass-card rounded-3xl p-8 mb-8 border border-white/10 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                            <img src={airdrop.image_url} alt="" className="w-64 h-64 object-contain" />
+                            <Image
+                                src={airdrop.image_url}
+                                alt=""
+                                width={256}
+                                height={256}
+                                className="w-64 h-64 object-contain"
+                            />
                         </div>
 
                         <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
-                            <img
+                            <Image
                                 src={airdrop.image_url}
                                 alt={airdrop.name}
+                                width={128}
+                                height={128}
                                 className="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-contain bg-black/20 p-2"
                             />
                             <div className="flex-1">
