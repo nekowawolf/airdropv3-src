@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function GodhandSection() {
     return (
-        <section className="flex items-center justify-center relative">
+        <section id="alpha" className="flex items-center justify-center relative">
             <Image
                 src="/images/godhand.png"
                 alt="Explore Airdrop"

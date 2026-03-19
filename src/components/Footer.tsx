@@ -1,6 +1,19 @@
 'use client';
 
 export default function Footer() {
+
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+
+        const el = document.getElementById(id);
+        if (el) {
+            const yOffset = -80;
+            const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
     return (
         <footer className="relative py-10 mt-20 overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-t after:from-blue-600/30 after:via-blue-500/10 after:to-transparent after:pointer-events-none">
             <div className="max-w-7xl mx-auto px-4">
@@ -23,15 +36,31 @@ export default function Footer() {
                     </p>
 
                     <div className="order-1 md:order-2 flex space-x-6 mt-4 md:mt-0">
-                        <a href="#features" className="text-fill-color/60 hover:text-fill-color transition-colors">
+
+                        <a
+                            href="#features"
+                            onClick={(e) => handleScroll(e, 'features')}
+                            className="text-fill-color/60 hover:text-fill-color transition-colors"
+                        >
                             Features
                         </a>
-                        <a href="#heatmap" className="text-fill-color/60 hover:text-fill-color transition-colors">
+
+                        <a
+                            href="#heatmap"
+                            onClick={(e) => handleScroll(e, 'heatmap')}
+                            className="text-fill-color/60 hover:text-fill-color transition-colors"
+                        >
                             Heatmap
                         </a>
-                        <a href="#alpha" className="text-fill-color/60 hover:text-fill-color transition-colors">
+
+                        <a
+                            href="#alpha"
+                            onClick={(e) => handleScroll(e, 'alpha')}
+                            className="text-fill-color/60 hover:text-fill-color transition-colors"
+                        >
                             Alpha
                         </a>
+
                     </div>
 
                 </div>
