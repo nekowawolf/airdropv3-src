@@ -14,6 +14,7 @@ export interface Airdrop {
     link_claim: string;
     link_discord: string;
     link_twitter: string;
+    link_telegram: string;
     image_url: string;
     description: string;
     link_guide: string;

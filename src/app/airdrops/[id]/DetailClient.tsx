@@ -207,6 +207,17 @@ export default function AirdropDetail() {
                                         <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
                                     </a>
                                 )}
+                                {airdrop.link_telegram && (
+                                    <a
+                                        href={airdrop.link_telegram}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between p-3 rounded-xl card-color card-hover group"
+                                    >
+                                        <span className="font-medium">Telegram</span>
+                                        <ExternalLink size={16} className="text-fill-color/40 group-hover:text-fill-color" />
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
